@@ -43,12 +43,9 @@ the dataset.
 
 <!-- -->
 
-    png('plot1.png')
     hist(dailySteps$steps, main = "Histogram of Daily Step Count", breaks = 10, col = "gray", xlab = "Daily Steps")
-    dev.off()
 
-    ## quartz_off_screen 
-    ##                 2
+![](Course_Project_1_files/figure-markdown_strict/unnamed-chunk-4-1.png)
 
 1.  Calculate and report the mean and median of the total number of
     steps taken per day.
@@ -70,13 +67,10 @@ the dataset.
 
 <!-- -->
 
-    png('plot2.png')
     avgStepsInterval <- aggregate(steps ~ interval, data, mean, na.rm = TRUE)
     with(avgStepsInterval, plot(interval, steps, type = "l", main = "Average Steps by Interval")) 
-    dev.off()
 
-    ## quartz_off_screen 
-    ##                 2
+![](Course_Project_1_files/figure-markdown_strict/unnamed-chunk-6-1.png)
 
 1.  Which 5-minute interval, on average across all the days in the
     dataset, contains the maximum number of steps?
@@ -131,13 +125,10 @@ into some calculations or summaries of the data.
 
 <!-- -->
 
-    png('plot3.png')
     dailySteps.complete <- aggregate(steps.complete ~ date, mergedData, sum, na.rm = TRUE)
     hist(dailySteps.complete$steps.complete, main = "Histogram of Daily Step Count (Imputed Data)", breaks = 10, col = "gray", xlab = "Daily Steps")
-    dev.off()
 
-    ## quartz_off_screen 
-    ##                 2
+![](Course_Project_1_files/figure-markdown_strict/unnamed-chunk-10-1.png)
 
     summary(dailySteps.complete$steps.complete)
 
@@ -181,10 +172,7 @@ dataset with the filled-in missing values for this part.
 
 <!-- -->
 
-    png('plot4.png')
     avgStepsInterval_dayType <- aggregate(steps.complete ~ interval + daytype, mergedData, mean, na.rm = TRUE)
     xyplot(steps.complete ~ interval | daytype, data = avgStepsInterval_dayType, layout = c(1,2), type = "l", xlab = "Interval", ylab = "Number of Steps", main = "Average Steps by Interval and Weekday Type")
-    dev.off()
 
-    ## quartz_off_screen 
-    ##                 2
+![](Course_Project_1_files/figure-markdown_strict/unnamed-chunk-12-1.png)

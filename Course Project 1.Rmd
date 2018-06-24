@@ -37,9 +37,7 @@ dailySteps <- aggregate(steps ~ date, data, sum, na.rm = TRUE)
 
 2. If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day.  
 ```{r}
-png('plot1.png')
 hist(dailySteps$steps, main = "Histogram of Daily Step Count", breaks = 10, col = "gray", xlab = "Daily Steps")
-dev.off()
 ```
 
 3. Calculate and report the mean and median of the total number of steps taken per day.
@@ -52,10 +50,8 @@ summary(dailySteps$steps)
 
 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis).  
 ```{r}
-png('plot2.png')
 avgStepsInterval <- aggregate(steps ~ interval, data, mean, na.rm = TRUE)
 with(avgStepsInterval, plot(interval, steps, type = "l", main = "Average Steps by Interval")) 
-dev.off()
 ```
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
@@ -85,10 +81,8 @@ mergedData$steps.complete <- ifelse(is.na(mergedData$steps.x), mergedData$steps.
 
 4. Make a histogram of the total number of steps taken each day and calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 ```{r}
-png('plot3.png')
 dailySteps.complete <- aggregate(steps.complete ~ date, mergedData, sum, na.rm = TRUE)
 hist(dailySteps.complete$steps.complete, main = "Histogram of Daily Step Count (Imputed Data)", breaks = 10, col = "gray", xlab = "Daily Steps")
-dev.off()
 summary(dailySteps.complete$steps.complete)
 ```
 * Raw Data: The mean of the daily total steps is 10766 and the median is 10765.
@@ -108,9 +102,7 @@ mergedData$daytype <- ifelse(mergedData$weekday %in% c("Saturday","Sunday"), "we
 
 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.  
 ```{r}
-png('plot4.png')
 avgStepsInterval_dayType <- aggregate(steps.complete ~ interval + daytype, mergedData, mean, na.rm = TRUE)
 xyplot(steps.complete ~ interval | daytype, data = avgStepsInterval_dayType, layout = c(1,2), type = "l", xlab = "Interval", ylab = "Number of Steps", main = "Average Steps by Interval and Weekday Type")
-dev.off()
 ```
 
